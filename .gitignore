@@ -1,0 +1,10 @@
+# sistema
+.DS_Store
+Thumbs.db
+
+# vercel
+.vercel
+
+# temporales
+*.orig.png
+*.log
