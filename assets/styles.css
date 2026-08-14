@@ -733,6 +733,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .membership-note { max-width: none; }
 }
 
+/* Pantallas muy estrechas (Galaxy Fold cerrado, 280px): las etiquetas en
+   versalitas espaciadas no caben con el relleno normal. Se ajusta el relleno y
+   el interletraje antes que permitir que el botón se salga del viewport. */
+@media (max-width: 400px) {
+  .btn {
+    min-width: 0;
+    padding-inline: 1rem;
+    letter-spacing: 0.08em;
+  }
+}
+
 /* ---------- Revelado al hacer scroll ----------
    Un único gesto: opacidad y 12px de desplazamiento, por bloque.
    Sin entradas laterales ni cascadas escalonadas. */
