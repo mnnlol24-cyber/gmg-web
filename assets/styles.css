@@ -475,6 +475,75 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @media (min-width: 901px) and (max-width: 1080px) { .spec-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
 
+/* ---------- Equipo médico: nómina editorial con retrato ----------
+   Compás propio: filas a lo ancho con retrato, identidad y semblanza.
+   Admite cualquier número de médicos sin dejar huecos en la rejilla. */
+.team { padding-block: var(--sp-section-lg); }
+.roster {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+.doc {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 0.9fr) minmax(0, 1.5fr);
+  gap: clamp(1.4rem, 3vw, 2.8rem);
+  align-items: start;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+  border-bottom: 1px solid var(--line);
+}
+.doc-photo {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-2);
+}
+.doc-photo img {
+  width: 100%;
+  height: auto; /* anula el atributo height del HTML para que aspect-ratio mande */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%; /* mantiene el rostro dentro del encuadre */
+}
+.doc-id h3 {
+  font-size: var(--t-md);
+  margin-bottom: 0.4rem;
+}
+.doc-role {
+  margin: 0 0 0.25rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--gold);
+}
+.doc-where {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--ink-soft);
+}
+.doc-bio p {
+  margin: 0;
+  font-size: var(--t-base);
+  color: var(--ink-soft);
+  max-width: 64ch;
+}
+.doc-bio .doc-tags {
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--t-xs);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 980px) {
+  .doc { grid-template-columns: 132px minmax(0, 1fr); }
+  .doc-bio { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .doc { grid-template-columns: 92px minmax(0, 1fr); gap: 1.1rem; }
+  .doc-id h3 { font-size: var(--t-base); }
+}
+
 /* ---------- La clínica: imagen a sangre por la izquierda ---------- */
 .clinic { padding-block: var(--sp-section); }
 .clinic-grid {
@@ -496,6 +565,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .clinic-copy { padding-right: var(--gutter); }
 .clinic-copy-inner { max-width: calc(var(--container) / 2 - var(--clinic-gap) / 2); }
 .clinic-copy p { color: var(--ink-soft); }
+
+/* Listado de sedes: cada clínica con su foco, separadas por hairline. */
+.clinic-list { list-style: none; margin: 1.9rem 0 0; padding: 0; }
+.clinic-list li { padding-block: 1.05rem; border-top: 1px solid var(--line); }
+.clinic-list li:last-child { border-bottom: 1px solid var(--line); }
+.clinic-list h3 { font-size: var(--t-md); margin-bottom: 0.2rem; }
+.clinic-copy .clinic-list p { margin: 0; font-size: var(--t-base); max-width: 46ch; }
 
 .checklist { list-style: none; margin: 1.8rem 0 0; padding: 0; display: grid; gap: 0.9rem; }
 .checklist li {
