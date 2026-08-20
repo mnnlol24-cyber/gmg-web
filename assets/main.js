@@ -105,7 +105,8 @@ if (hasIO) {
     b.setAttribute("aria-selected", i === 0 ? "true" : "false");
     b.setAttribute("aria-label", `Ver a ${nombre}`);
     const img = document.createElement("img");
-    img.src = foto.src;
+    // versión ligera de 160px: la miniatura mide 52px, no vale traer el retrato completo
+    img.src = foto.dataset.thumb || foto.src;
     img.alt = "";
     img.loading = "lazy";
     b.appendChild(img);
