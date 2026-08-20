@@ -475,21 +475,36 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @media (min-width: 901px) and (max-width: 1080px) { .spec-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
 
-/* ---------- Equipo médico: carrusel editorial ----------
-   Pista con scroll-snap nativa: se arrastra con el dedo, avanza sola y
-   funciona aunque el JavaScript falle. Sin marcos de tarjeta: el retrato y
-   el texto sostienen la ficha, igual que el resto del sitio. */
+/* ---------- Nuestros especialistas: galería de una en una ----------
+   Las diapositivas se apilan en la MISMA celda de rejilla: el bloque toma la
+   altura de la más alta y no da saltos al cambiar. La entrada es direccional
+   (entra por donde va el gesto) y la fotografía cierra un leve acercamiento. */
 .team { padding-block: var(--sp-section-lg); }
 .team-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
-  margin-bottom: 0;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 .team-head > div:first-child { min-width: 0; }
 
-.carousel-nav { display: flex; gap: 0.55rem; flex: 0 0 auto; padding-bottom: 0.3rem; }
+.gallery-nav { display: flex; align-items: center; gap: 1.4rem; flex: 0 0 auto; padding-bottom: 0.3rem; }
+.gallery-count {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+.gallery-count #gCur { color: var(--gold); }
+.gallery-count-sep { color: var(--line-strong); }
+.gallery-arrows { display: flex; gap: 0.55rem; }
+
 .car-btn {
   width: 46px;
   height: 46px;
@@ -502,8 +517,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   cursor: pointer;
   transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
 }
-.car-btn:hover:not(:disabled) { background: var(--navy); border-color: var(--navy); color: var(--on-dark); }
-.car-btn:disabled { opacity: 0.3; cursor: default; }
+.car-btn:hover { background: var(--navy); border-color: var(--navy); color: var(--on-dark); }
 .car-arrow {
   width: 0.5rem;
   height: 0.5rem;
@@ -513,88 +527,103 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .car-arrow-left { transform: rotate(-135deg) translateX(-1px); }
 
-.carousel { margin-top: clamp(1.8rem, 3vw, 2.6rem); }
-.carousel-track {
-  display: flex;
-  gap: clamp(1rem, 2vw, 1.6rem);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--gutter);
-  padding-inline: var(--gutter);
-  padding-block: 0.25rem;
-  scrollbar-width: none;
+.gallery-stage { display: grid; }
+.gslide {
+  grid-area: 1 / 1; /* todas en la misma celda: sin salto de altura */
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(1.8rem, 4vw, 3.5rem);
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(var(--enter, 26px));
+  transition: opacity 0.55s var(--ease), transform 0.65s var(--ease), visibility 0s linear 0.55s;
 }
-.carousel-track::-webkit-scrollbar { display: none; }
-.carousel-track:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.gslide[data-active] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 0.55s var(--ease), transform 0.65s var(--ease), visibility 0s;
+}
+/* dirección del gesto: hacia atrás, entra por el lado contrario */
+.gallery-stage[data-dir="prev"] .gslide { --enter: -26px; }
 
-.doc-card {
-  flex: 0 0 clamp(256px, 74vw, 322px);
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-}
-.doc-photo {
-  margin: 0 0 1.15rem;
+.gslide-photo {
+  margin: 0;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--paper-2);
 }
-.doc-photo img {
+.gslide-photo img {
   width: 100%;
   height: auto; /* anula el atributo height del HTML para que aspect-ratio mande */
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center 20%; /* mantiene el rostro dentro del encuadre */
-  transition: transform 0.7s var(--ease);
+  object-position: center 18%;
+  transform: scale(1.05);
+  transition: transform 1.1s var(--ease);
 }
-.doc-card:hover .doc-photo img { transform: scale(1.035); }
+.gslide[data-active] .gslide-photo img { transform: none; }
 
-.doc-card-body { display: flex; flex-direction: column; flex: 1 1 auto; }
-.doc-card-body h3 { font-size: var(--t-md); margin-bottom: 0.4rem; }
-.doc-role {
-  margin: 0 0 0.2rem;
+.gslide-info { min-width: 0; }
+.gslide-num {
+  margin: 0 0 0.9rem;
   font-size: var(--t-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+}
+.gslide-info h3 {
+  font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.55rem;
+}
+.doc-role {
+  margin: 0 0 0.25rem;
+  font-size: var(--t-md);
   font-weight: 600;
   color: var(--gold);
 }
-.doc-where { margin: 0 0 0.9rem; font-size: var(--t-sm); color: var(--ink-soft); }
-.doc-bio { margin: 0; font-size: var(--t-base); color: var(--ink-soft); }
+.doc-where { margin: 0 0 1.3rem; font-size: var(--t-base); color: var(--ink-soft); }
+.doc-bio { margin: 0; font-size: var(--t-md); color: var(--ink-soft); max-width: 56ch; }
 .doc-tags {
-  margin: auto 0 0; /* se ancla al pie aunque las semblanzas midan distinto */
-  padding-top: 0.9rem;
+  margin: 1.4rem 0 0;
+  padding-top: 1rem;
   border-top: 1px solid var(--line);
   font-size: var(--t-xs);
   color: var(--ink-soft);
+  max-width: 56ch;
 }
 
-.carousel-foot {
+/* pie: miniaturas de los siete rostros, como en la galería de un hotel */
+.gallery-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-top: clamp(1.4rem, 2.5vw, 2rem);
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
 }
-.car-dots { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-.car-dot {
-  width: 30px;
-  height: 2px;
-  padding: 0.6rem 0; /* área táctil sin engordar la marca visible */
-  background: none;
-  border: 0;
+.thumbs { display: flex; gap: 0.6rem; margin: 0; padding: 0; list-style: none; flex-wrap: wrap; }
+.thumb {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  overflow: hidden;
   cursor: pointer;
-  position: relative;
+  opacity: 0.5;
+  transition: opacity 0.3s var(--ease), border-color 0.3s var(--ease);
 }
-.car-dot::after {
-  content: "";
-  position: absolute;
-  inset: 50% 0 auto;
-  height: 2px;
-  background: var(--line-strong);
-  transition: background-color 0.3s var(--ease);
-}
-.car-dot[aria-selected="true"]::after { background: var(--gold); }
-.car-dot:hover::after { background: var(--ink-soft); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+.thumb:hover { opacity: 0.85; }
+.thumb[aria-selected="true"] { opacity: 1; border-color: var(--gold); }
 
 .car-play {
   display: inline-flex;
@@ -624,7 +653,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .car-play-icon::before { left: 0; }
 .car-play-icon::after { right: 0; }
-/* estado pausado: el icono pasa a ser un triángulo de reanudar */
 .car-play[aria-pressed="true"] .car-play-icon::before {
   left: 0;
   width: 0;
@@ -635,9 +663,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .car-play[aria-pressed="true"] .car-play-icon::after { display: none; }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .team-head { flex-direction: column; align-items: flex-start; gap: 1.4rem; }
-  .carousel-nav { order: 2; }
+  .gslide { grid-template-columns: 1fr; gap: 1.6rem; align-items: start; }
+  .gslide-photo { max-width: 320px; }
+}
+@media (max-width: 560px) {
+  .gallery-foot { flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+  .thumb { width: 44px; height: 44px; }
+}
+
+/* Sin movimiento: cambio seco, sin desplazamiento ni acercamiento. */
+@media (prefers-reduced-motion: reduce) {
+  .gslide, .gslide[data-active] { transform: none; transition: opacity 0.2s linear, visibility 0s; }
+  .gslide-photo img, .gslide[data-active] .gslide-photo img { transform: none; transition: none; }
 }
 
 /* ---------- La clínica: imagen a sangre por la izquierda ---------- */

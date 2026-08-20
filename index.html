@@ -156,33 +156,36 @@
       </div>
     </section>
 
-    <!-- ══════════ EQUIPO MÉDICO (carrusel) ══════════ -->
+    <!-- ══════════ NUESTROS ESPECIALISTAS (galería) ══════════ -->
     <section class="team" id="equipo">
       <div class="container">
         <header class="section-head team-head reveal">
           <div>
             <p class="eyebrow">Equipo médico</p>
-            <h2>Quién te va a operar</h2>
-            <p class="section-lede">Especialistas formados en Colombia, México, Argentina, Brasil, Canadá y Estados Unidos. Conoces a tu cirujano antes de viajar.</p>
+            <h2>Nuestros especialistas</h2>
+            <p class="section-lede">Formados en Colombia, México, Argentina, Brasil, Canadá y Estados Unidos. Conoces a tu cirujano antes de viajar.</p>
           </div>
-          <div class="carousel-nav">
-            <button type="button" class="car-btn" data-dir="prev" aria-label="Médico anterior" aria-controls="docTrack">
-              <span class="car-arrow car-arrow-left" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="car-btn" data-dir="next" aria-label="Médico siguiente" aria-controls="docTrack">
-              <span class="car-arrow" aria-hidden="true"></span>
-            </button>
+          <div class="gallery-nav">
+            <p class="gallery-count"><span id="gCur">01</span><span class="gallery-count-sep" aria-hidden="true">/</span><span>07</span></p>
+            <div class="gallery-arrows">
+              <button type="button" class="car-btn" data-dir="prev" aria-label="Especialista anterior" aria-controls="gStage">
+                <span class="car-arrow car-arrow-left" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="car-btn" data-dir="next" aria-label="Especialista siguiente" aria-controls="gStage">
+                <span class="car-arrow" aria-hidden="true"></span>
+              </button>
+            </div>
           </div>
         </header>
-      </div>
 
-      <div class="carousel reveal" aria-roledescription="carrusel" aria-label="Equipo médico de Global Medical Group">
-        <div class="carousel-track" id="docTrack" tabindex="0" role="list" aria-label="Fichas de los especialistas">
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="1 de 7: doctor Juan Manuel Lamadrid Florian">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/juan-manuel-lamadrid.webp" alt="Retrato del doctor Juan Manuel Lamadrid Florian" width="592" height="766" loading="lazy" />
+        <div class="gallery reveal" id="gallery" aria-roledescription="carrusel" aria-label="Especialistas de Global Medical Group">
+          <div class="gallery-stage" id="gStage">
+          <article class="gslide" data-active aria-hidden="false" aria-roledescription="diapositiva" aria-label="1 de 7: doctor Juan Manuel Lamadrid Florian">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/juan-manuel-lamadrid.webp" alt="Retrato del doctor Juan Manuel Lamadrid Florian" width="888" height="1149" fetchpriority="high" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">01</p>
               <h3>Dr. Juan Manuel Lamadrid Florian</h3>
               <p class="doc-role">Odontología estética</p>
               <p class="doc-where">Sonrisa sin Límites · Barranquilla</p>
@@ -190,11 +193,12 @@
               <p class="doc-tags">Rehabilitación oral · Estética dental · Pacientes internacionales</p>
             </div>
           </article>
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="2 de 7: doctor Frank Felipe Lamadrid Florian">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/frank-lamadrid.webp" alt="Retrato del doctor Frank Felipe Lamadrid Florian" width="524" height="654" loading="lazy" />
+          <article class="gslide" aria-hidden="true" aria-roledescription="diapositiva" aria-label="2 de 7: doctor Frank Felipe Lamadrid Florian">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/frank-lamadrid.webp" alt="Retrato del doctor Frank Felipe Lamadrid Florian" width="786" height="981" loading="lazy" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">02</p>
               <h3>Dr. Frank Felipe Lamadrid Florian</h3>
               <p class="doc-role">Cirugía plástica y estética corporal</p>
               <p class="doc-where">Lipoescultura láser y marcación abdominal 4K</p>
@@ -202,11 +206,12 @@
               <p class="doc-tags">ASPS · CREMESP São Paulo · Universidade Brasil · U. John F. Kennedy</p>
             </div>
           </article>
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="3 de 7: doctor Guido Pugliese Casalins">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/guido-pugliese.webp" alt="Retrato del doctor Guido Pugliese Casalins" width="550" height="614" loading="lazy" />
+          <article class="gslide" aria-hidden="true" aria-roledescription="diapositiva" aria-label="3 de 7: doctor Guido Pugliese Casalins">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/guido-pugliese.webp" alt="Retrato del doctor Guido Pugliese Casalins" width="825" height="921" loading="lazy" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">03</p>
               <h3>Dr. Guido Pugliese Casalins</h3>
               <p class="doc-role">Ortopedia y cirugía de columna vertebral</p>
               <p class="doc-where">Clínica Porto Azul</p>
@@ -214,11 +219,12 @@
               <p class="doc-tags">Escoliosis · Hernias discales · Dolor lumbar · UNINORTE · IMSS · McGill</p>
             </div>
           </article>
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="4 de 7: doctor Oscar Rafael De La Peña Vargas">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/oscar-de-la-pena.webp" alt="Retrato del doctor Oscar Rafael De La Peña Vargas" width="556" height="660" loading="lazy" />
+          <article class="gslide" aria-hidden="true" aria-roledescription="diapositiva" aria-label="4 de 7: doctor Oscar Rafael De La Peña Vargas">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/oscar-de-la-pena.webp" alt="Retrato del doctor Oscar Rafael De La Peña Vargas" width="834" height="990" loading="lazy" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">04</p>
               <h3>Dr. Oscar Rafael De La Peña Vargas</h3>
               <p class="doc-role">Ortopedia, columna y reemplazos articulares</p>
               <p class="doc-where">Clínica Porto Azul</p>
@@ -226,11 +232,12 @@
               <p class="doc-tags">Reemplazo articular · Lesión de LCA y meniscos · Manguito rotador</p>
             </div>
           </article>
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="5 de 7: doctor César Carriazo Escaf">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/cesar-carriazo.webp" alt="Retrato del doctor César Carriazo Escaf" width="534" height="646" loading="lazy" />
+          <article class="gslide" aria-hidden="true" aria-roledescription="diapositiva" aria-label="5 de 7: doctor César Carriazo Escaf">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/cesar-carriazo.webp" alt="Retrato del doctor César Carriazo Escaf" width="801" height="969" loading="lazy" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">05</p>
               <h3>Dr. César Carriazo Escaf</h3>
               <p class="doc-role">Oftalmología y cirugía refractiva</p>
               <p class="doc-where">Clínica Carriazo</p>
@@ -238,11 +245,12 @@
               <p class="doc-tags">Cirugía refractiva · Córnea · Innovación quirúrgica</p>
             </div>
           </article>
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="6 de 7: doctor Dieb Nicolás Maloof Cuse">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/dieb-maloof.webp" alt="Retrato del doctor Dieb Nicolás Maloof Cuse" width="592" height="740" loading="lazy" />
+          <article class="gslide" aria-hidden="true" aria-roledescription="diapositiva" aria-label="6 de 7: doctor Dieb Nicolás Maloof Cuse">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/dieb-maloof.webp" alt="Retrato del doctor Dieb Nicolás Maloof Cuse" width="888" height="1110" loading="lazy" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">06</p>
               <h3>Dr. Dieb Nicolás Maloof Cuse</h3>
               <p class="doc-role">Neurocirugía y neurocirugía endovascular</p>
               <p class="doc-where">Clínica Internacional La Misericordia</p>
@@ -250,11 +258,12 @@
               <p class="doc-tags">Neurocirugía endovascular · Estimulación medular · Dolor crónico</p>
             </div>
           </article>
-          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="7 de 7: doctor William Sánchez Rincones">
-            <figure class="doc-photo">
-              <img src="assets/img/equipo/william-sanchez.webp" alt="Retrato del doctor William Sánchez Rincones" width="658" height="688" loading="lazy" />
+          <article class="gslide" aria-hidden="true" aria-roledescription="diapositiva" aria-label="7 de 7: doctor William Sánchez Rincones">
+            <figure class="gslide-photo">
+              <img src="assets/img/equipo/william-sanchez.webp" alt="Retrato del doctor William Sánchez Rincones" width="987" height="1032" loading="lazy" />
             </figure>
-            <div class="doc-card-body">
+            <div class="gslide-info">
+              <p class="gslide-num" aria-hidden="true">07</p>
               <h3>Dr. William Sánchez Rincones</h3>
               <p class="doc-role">Medicina interna</p>
               <p class="doc-where">Chequeo ejecutivo y medicina integrativa</p>
@@ -262,16 +271,15 @@
               <p class="doc-tags">Chequeo ejecutivo · Diabetología · Terapias endovenosas · Cámara hiperbárica</p>
             </div>
           </article>
-        </div>
-      </div>
+          </div>
 
-      <div class="container">
-        <div class="carousel-foot reveal">
-          <div class="car-dots" id="docDots" role="tablist" aria-label="Ir a un especialista"></div>
-          <button type="button" class="car-play" id="docPlay" aria-pressed="false">
-            <span class="car-play-icon" aria-hidden="true"></span>
-            <span class="car-play-label">Pausar</span>
-          </button>
+          <div class="gallery-foot">
+            <ul class="thumbs" id="gThumbs" role="tablist" aria-label="Elegir especialista"></ul>
+            <button type="button" class="car-play" id="gPlay" aria-pressed="false">
+              <span class="car-play-icon" aria-hidden="true"></span>
+              <span class="car-play-label">Pausar</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
