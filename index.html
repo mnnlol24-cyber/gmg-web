@@ -156,121 +156,123 @@
       </div>
     </section>
 
-    <!-- ══════════ EQUIPO MÉDICO ══════════ -->
+    <!-- ══════════ EQUIPO MÉDICO (carrusel) ══════════ -->
     <section class="team" id="equipo">
       <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Equipo médico</p>
-          <h2>Quién te va a operar</h2>
-          <p class="section-lede">Especialistas formados en Colombia, México, Argentina, Brasil, Canadá y Estados Unidos. Conoces a tu cirujano antes de viajar.</p>
+        <header class="section-head team-head reveal">
+          <div>
+            <p class="eyebrow">Equipo médico</p>
+            <h2>Quién te va a operar</h2>
+            <p class="section-lede">Especialistas formados en Colombia, México, Argentina, Brasil, Canadá y Estados Unidos. Conoces a tu cirujano antes de viajar.</p>
+          </div>
+          <div class="carousel-nav">
+            <button type="button" class="car-btn" data-dir="prev" aria-label="Médico anterior" aria-controls="docTrack">
+              <span class="car-arrow car-arrow-left" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="car-btn" data-dir="next" aria-label="Médico siguiente" aria-controls="docTrack">
+              <span class="car-arrow" aria-hidden="true"></span>
+            </button>
+          </div>
         </header>
+      </div>
 
-        <ul class="roster" role="list">
-          <li class="doc reveal">
+      <div class="carousel reveal" aria-roledescription="carrusel" aria-label="Equipo médico de Global Medical Group">
+        <div class="carousel-track" id="docTrack" tabindex="0" role="list" aria-label="Fichas de los especialistas">
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="1 de 7: doctor Juan Manuel Lamadrid Florian">
             <figure class="doc-photo">
               <img src="assets/img/equipo/juan-manuel-lamadrid.webp" alt="Retrato del doctor Juan Manuel Lamadrid Florian" width="592" height="766" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. Juan Manuel Lamadrid Florian</h3>
               <p class="doc-role">Odontología estética</p>
               <p class="doc-where">Sonrisa sin Límites · Barranquilla</p>
+              <p class="doc-bio">Odontólogo dedicado a la rehabilitación oral de pacientes internacionales, con una práctica que integra salud, función y estética. Su filosofía, «La Sonrisa Sin Límites», parte de una idea: recuperar la sonrisa también devuelve confianza.</p>
+              <p class="doc-tags">Rehabilitación oral · Estética dental · Pacientes internacionales</p>
             </div>
-            <div class="doc-bio">
-              <p>Odontólogo colombiano dedicado a la rehabilitación oral de pacientes internacionales, con una práctica que integra salud, función y estética. Su filosofía, «La Sonrisa Sin Límites», parte de una idea: recuperar la sonrisa también devuelve confianza.</p>
-              <p class="doc-tags">Rehabilitación oral · Estética dental · Atención a pacientes internacionales</p>
-            </div>
-          </li>
-
-          <li class="doc reveal">
+          </article>
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="2 de 7: doctor Frank Felipe Lamadrid Florian">
             <figure class="doc-photo">
               <img src="assets/img/equipo/frank-lamadrid.webp" alt="Retrato del doctor Frank Felipe Lamadrid Florian" width="524" height="654" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. Frank Felipe Lamadrid Florian</h3>
               <p class="doc-role">Cirugía plástica y estética corporal</p>
               <p class="doc-where">Lipoescultura láser y marcación abdominal 4K</p>
+              <p class="doc-bio">Cirujano plástico certificado por la American Society of Plastic Surgeons y por el Consejo Regional de Medicina de São Paulo. Desarrollador de la técnica 4K en lipoescultura, con maestrías en Cirugía Estética y Medicina Antienvejecimiento.</p>
+              <p class="doc-tags">ASPS · CREMESP São Paulo · Universidade Brasil · U. John F. Kennedy</p>
             </div>
-            <div class="doc-bio">
-              <p>Cirujano plástico certificado por la American Society of Plastic Surgeons y por el Consejo Regional de Medicina de São Paulo. Desarrollador de la técnica 4K en lipoescultura, con maestrías en Cirugía Estética y en Medicina Antienvejecimiento.</p>
-              <p class="doc-tags">ASPS · CREMESP São Paulo · Universidade Brasil · U. Simón Bolívar · U. John F. Kennedy</p>
-            </div>
-          </li>
-
-          <li class="doc reveal">
+          </article>
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="3 de 7: doctor Guido Pugliese Casalins">
             <figure class="doc-photo">
               <img src="assets/img/equipo/guido-pugliese.webp" alt="Retrato del doctor Guido Pugliese Casalins" width="550" height="614" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. Guido Pugliese Casalins</h3>
               <p class="doc-role">Ortopedia y cirugía de columna vertebral</p>
               <p class="doc-where">Clínica Porto Azul</p>
+              <p class="doc-bio">Ortopedista traumatólogo con subespecialidad en Cirugía de Columna Vertebral en el Instituto Mexicano del Seguro Social y fellowship en espina dorsal avalado por la Universidad McGill de Montreal.</p>
+              <p class="doc-tags">Escoliosis · Hernias discales · Dolor lumbar · UNINORTE · IMSS · McGill</p>
             </div>
-            <div class="doc-bio">
-              <p>Ortopedista traumatólogo con subespecialidad en Cirugía de Columna Vertebral en el Instituto Mexicano del Seguro Social y fellowship en espina dorsal avalado por la Universidad McGill de Montreal.</p>
-              <p class="doc-tags">Escoliosis · Hernias discales · Dolor lumbar y radiofrecuencia · UNINORTE · IMSS México · McGill Canadá</p>
-            </div>
-          </li>
-
-          <li class="doc reveal">
+          </article>
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="4 de 7: doctor Oscar Rafael De La Peña Vargas">
             <figure class="doc-photo">
               <img src="assets/img/equipo/oscar-de-la-pena.webp" alt="Retrato del doctor Oscar Rafael De La Peña Vargas" width="556" height="660" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. Oscar Rafael De La Peña Vargas</h3>
               <p class="doc-role">Ortopedia, columna y reemplazos articulares</p>
               <p class="doc-where">Clínica Porto Azul</p>
+              <p class="doc-bio">Cirujano de columna y corrección de escoliosis, con experiencia en cirugías complejas de cadera y pelvis. Especialista en reemplazos articulares de rodilla, cadera y hombro.</p>
+              <p class="doc-tags">Reemplazo articular · Lesión de LCA y meniscos · Manguito rotador</p>
             </div>
-            <div class="doc-bio">
-              <p>Cirujano de columna y corrección de escoliosis, con experiencia en cirugías complejas de cadera y pelvis y en deformidades óseas. Especialista en reemplazos articulares de rodilla, cadera y hombro.</p>
-              <p class="doc-tags">Reemplazo articular · Lesión de LCA y meniscos · Manguito rotador · Trauma deportivo</p>
-            </div>
-          </li>
-
-          <li class="doc reveal">
+          </article>
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="5 de 7: doctor César Carriazo Escaf">
             <figure class="doc-photo">
               <img src="assets/img/equipo/cesar-carriazo.webp" alt="Retrato del doctor César Carriazo Escaf" width="534" height="646" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. César Carriazo Escaf</h3>
               <p class="doc-role">Oftalmología y cirugía refractiva</p>
               <p class="doc-where">Clínica Carriazo</p>
+              <p class="doc-bio">Referente internacional en cirugía refractiva. Desarrolló el Microqueratomo Pendular, la Queratoplastia Lamelar con Láser y el Corneal Remodeling: técnicas nacidas en Barranquilla que hoy se aplican en todo el mundo.</p>
+              <p class="doc-tags">Cirugía refractiva · Córnea · Innovación quirúrgica</p>
             </div>
-            <div class="doc-bio">
-              <p>Referente internacional en cirugía refractiva. Desarrolló el Microqueratomo Pendular, la Queratoplastia Lamelar con Láser y el Corneal Remodeling: técnicas nacidas en Barranquilla que hoy se aplican en clínicas de todo el mundo.</p>
-              <p class="doc-tags">Cirugía refractiva · Córnea · Innovación en técnica quirúrgica</p>
-            </div>
-          </li>
-
-          <li class="doc reveal">
+          </article>
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="6 de 7: doctor Dieb Nicolás Maloof Cuse">
             <figure class="doc-photo">
               <img src="assets/img/equipo/dieb-maloof.webp" alt="Retrato del doctor Dieb Nicolás Maloof Cuse" width="592" height="740" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. Dieb Nicolás Maloof Cuse</h3>
               <p class="doc-role">Neurocirugía y neurocirugía endovascular</p>
               <p class="doc-where">Clínica Internacional La Misericordia</p>
+              <p class="doc-bio">Neurocirujano por la Universidad de Buenos Aires, con formación en neurocirugía endovascular en la Clínica Sagrada Familia. Autor de publicaciones en revistas científicas internacionales.</p>
+              <p class="doc-tags">Neurocirugía endovascular · Estimulación medular · Dolor crónico</p>
             </div>
-            <div class="doc-bio">
-              <p>Neurocirujano por la Universidad de Buenos Aires, con formación en neurocirugía endovascular en la Clínica Sagrada Familia de Buenos Aires. Autor de publicaciones en revistas científicas internacionales.</p>
-              <p class="doc-tags">Neurocirugía endovascular · Estimulación medular · Dolor crónico de espalda</p>
-            </div>
-          </li>
-
-          <li class="doc reveal">
+          </article>
+          <article class="doc-card" role="group" aria-roledescription="ficha" aria-label="7 de 7: doctor William Sánchez Rincones">
             <figure class="doc-photo">
               <img src="assets/img/equipo/william-sanchez.webp" alt="Retrato del doctor William Sánchez Rincones" width="658" height="688" loading="lazy" />
             </figure>
-            <div class="doc-id">
+            <div class="doc-card-body">
               <h3>Dr. William Sánchez Rincones</h3>
               <p class="doc-role">Medicina interna</p>
               <p class="doc-where">Chequeo ejecutivo y medicina integrativa</p>
+              <p class="doc-bio">Internista con más de dieciséis años de ejercicio, docencia universitaria e investigación. Dirige el chequeo ejecutivo anual y los programas de medicina integrativa del grupo.</p>
+              <p class="doc-tags">Chequeo ejecutivo · Diabetología · Terapias endovenosas · Cámara hiperbárica</p>
             </div>
-            <div class="doc-bio">
-              <p>Internista con más de dieciséis años de ejercicio, docencia universitaria e investigación. Dirige el chequeo ejecutivo anual y los programas de medicina integrativa del grupo.</p>
-              <p class="doc-tags">Chequeo ejecutivo anual · Diabetología · Terapias endovenosas · Cámara hiperbárica</p>
-            </div>
-          </li>
-        </ul>
+          </article>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="carousel-foot reveal">
+          <div class="car-dots" id="docDots" role="tablist" aria-label="Ir a un especialista"></div>
+          <button type="button" class="car-play" id="docPlay" aria-pressed="false">
+            <span class="car-play-icon" aria-hidden="true"></span>
+            <span class="car-play-label">Pausar</span>
+          </button>
+        </div>
       </div>
     </section>
 

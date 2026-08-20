@@ -475,26 +475,67 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @media (min-width: 901px) and (max-width: 1080px) { .spec-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
 
-/* ---------- Equipo médico: nómina editorial con retrato ----------
-   Compás propio: filas a lo ancho con retrato, identidad y semblanza.
-   Admite cualquier número de médicos sin dejar huecos en la rejilla. */
+/* ---------- Equipo médico: carrusel editorial ----------
+   Pista con scroll-snap nativa: se arrastra con el dedo, avanza sola y
+   funciona aunque el JavaScript falle. Sin marcos de tarjeta: el retrato y
+   el texto sostienen la ficha, igual que el resto del sitio. */
 .team { padding-block: var(--sp-section-lg); }
-.roster {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--line-strong);
+.team-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 0;
 }
-.doc {
+.team-head > div:first-child { min-width: 0; }
+
+.carousel-nav { display: flex; gap: 0.55rem; flex: 0 0 auto; padding-bottom: 0.3rem; }
+.car-btn {
+  width: 46px;
+  height: 46px;
   display: grid;
-  grid-template-columns: 148px minmax(0, 0.9fr) minmax(0, 1.5fr);
-  gap: clamp(1.4rem, 3vw, 2.8rem);
-  align-items: start;
-  padding-block: clamp(1.6rem, 3vw, 2.4rem);
-  border-bottom: 1px solid var(--line);
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--line-ui);
+  border-radius: var(--radius);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.car-btn:hover:not(:disabled) { background: var(--navy); border-color: var(--navy); color: var(--on-dark); }
+.car-btn:disabled { opacity: 0.3; cursor: default; }
+.car-arrow {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid currentColor;
+  border-top: 1.5px solid currentColor;
+  transform: rotate(45deg) translateX(-1px);
+}
+.car-arrow-left { transform: rotate(-135deg) translateX(-1px); }
+
+.carousel { margin-top: clamp(1.8rem, 3vw, 2.6rem); }
+.carousel-track {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  padding-inline: var(--gutter);
+  padding-block: 0.25rem;
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+.doc-card {
+  flex: 0 0 clamp(256px, 74vw, 322px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
 }
 .doc-photo {
-  margin: 0;
+  margin: 0 0 1.15rem;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--paper-2);
@@ -505,43 +546,98 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 20%; /* mantiene el rostro dentro del encuadre */
+  transition: transform 0.7s var(--ease);
 }
-.doc-id h3 {
-  font-size: var(--t-md);
-  margin-bottom: 0.4rem;
-}
+.doc-card:hover .doc-photo img { transform: scale(1.035); }
+
+.doc-card-body { display: flex; flex-direction: column; flex: 1 1 auto; }
+.doc-card-body h3 { font-size: var(--t-md); margin-bottom: 0.4rem; }
 .doc-role {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.2rem;
   font-size: var(--t-sm);
   font-weight: 600;
   color: var(--gold);
 }
-.doc-where {
-  margin: 0;
-  font-size: var(--t-sm);
-  color: var(--ink-soft);
-}
-.doc-bio p {
-  margin: 0;
-  font-size: var(--t-base);
-  color: var(--ink-soft);
-  max-width: 64ch;
-}
-.doc-bio .doc-tags {
-  margin-top: 0.9rem;
-  padding-top: 0.8rem;
+.doc-where { margin: 0 0 0.9rem; font-size: var(--t-sm); color: var(--ink-soft); }
+.doc-bio { margin: 0; font-size: var(--t-base); color: var(--ink-soft); }
+.doc-tags {
+  margin: auto 0 0; /* se ancla al pie aunque las semblanzas midan distinto */
+  padding-top: 0.9rem;
   border-top: 1px solid var(--line);
   font-size: var(--t-xs);
-  letter-spacing: 0.01em;
+  color: var(--ink-soft);
 }
 
-@media (max-width: 980px) {
-  .doc { grid-template-columns: 132px minmax(0, 1fr); }
-  .doc-bio { grid-column: 1 / -1; }
+.carousel-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(1.4rem, 2.5vw, 2rem);
 }
-@media (max-width: 560px) {
-  .doc { grid-template-columns: 92px minmax(0, 1fr); gap: 1.1rem; }
-  .doc-id h3 { font-size: var(--t-base); }
+.car-dots { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.car-dot {
+  width: 30px;
+  height: 2px;
+  padding: 0.6rem 0; /* área táctil sin engordar la marca visible */
+  background: none;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+.car-dot::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 2px;
+  background: var(--line-strong);
+  transition: background-color 0.3s var(--ease);
+}
+.car-dot[aria-selected="true"]::after { background: var(--gold); }
+.car-dot:hover::after { background: var(--ink-soft); }
+
+.car-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  transition: color 0.25s var(--ease);
+}
+.car-play:hover { color: var(--ink); }
+.car-play-icon { position: relative; width: 10px; height: 11px; flex: 0 0 auto; }
+.car-play-icon::before, .car-play-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: currentColor;
+}
+.car-play-icon::before { left: 0; }
+.car-play-icon::after { right: 0; }
+/* estado pausado: el icono pasa a ser un triángulo de reanudar */
+.car-play[aria-pressed="true"] .car-play-icon::before {
+  left: 0;
+  width: 0;
+  height: 0;
+  background: none;
+  border-left: 9px solid currentColor;
+  border-block: 5.5px solid transparent;
+}
+.car-play[aria-pressed="true"] .car-play-icon::after { display: none; }
+
+@media (max-width: 720px) {
+  .team-head { flex-direction: column; align-items: flex-start; gap: 1.4rem; }
+  .carousel-nav { order: 2; }
 }
 
 /* ---------- La clínica: imagen a sangre por la izquierda ---------- */
