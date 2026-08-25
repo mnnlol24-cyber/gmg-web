@@ -462,18 +462,49 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 /* En pantallas bajas el sticky no aporta: la foto quedaría siempre cortada. */
 @media (max-height: 700px) { .spec-media { position: static; } }
 
-.spec-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(1.5rem, 3vw, 3rem); }
-.spec { border-top: 1px solid var(--line); padding: 1.5rem 0 1.7rem; }
+/* Los planes del programa ortopédico: una columna, junto a la fotografía. */
+.plan-list { list-style: none; margin: 0; padding: 0; }
+.plan-list li {
+  border-top: 1px solid var(--line);
+  padding: 1.25rem 0 1.35rem;
+}
+.plan-list li:last-child { border-bottom: 1px solid var(--line); }
+.plan-list p { margin: 0; font-size: var(--t-base); color: var(--ink-soft); }
+
+/* Bloque de especialidades complementarias, a todo el ancho del contenedor. */
+.spec-extra { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.spec-extra-title {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line-strong);
+  margin-bottom: 0;
+}
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+}
+.spec { border-top: 1px solid var(--line); padding: 1.4rem 0 1.6rem; }
+.spec:nth-child(-n + 3) { border-top: 0; padding-top: 1.6rem; }
 .spec p { font-size: var(--t-base); color: var(--ink-soft); margin: 0; }
 
 @media (max-width: 900px) {
   .spec-layout { grid-template-columns: 1fr; gap: 2.5rem; }
   .spec-media { position: static; }
   .spec-media img { aspect-ratio: 16 / 10; max-height: none; }
+  .spec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .spec:nth-child(-n + 3) { border-top: 1px solid var(--line); padding-top: 1.4rem; }
+  .spec:nth-child(-n + 2) { border-top: 0; padding-top: 1.6rem; }
 }
-/* La columna derecha es demasiado estrecha para dos textos entre 901 y 1080. */
-@media (min-width: 901px) and (max-width: 1080px) { .spec-grid { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .spec-grid { grid-template-columns: 1fr; }
+  .spec, .spec:nth-child(-n + 3) { border-top: 1px solid var(--line); padding-top: 1.4rem; }
+  .spec:first-child { border-top: 0; padding-top: 1.6rem; }
+}
 
 /* ---------- Nuestros especialistas: galería de una en una ----------
    Las diapositivas se apilan en la MISMA celda de rejilla: el bloque toma la
